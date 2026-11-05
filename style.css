@@ -21,7 +21,7 @@ MyButton{
 
 @font-face {
   font-family: 'StarJedi';
-  src: url('Fonts/star_jedi/starjedi/Starjedi.ttf') format('truetype');
+  src: url('Starjedi.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }

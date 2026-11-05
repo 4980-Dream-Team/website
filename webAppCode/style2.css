@@ -1,0 +1,37 @@
+
+
+body {
+  background-color: black;
+}
+
+h1 {
+  font-family: 'StarJedi', sans-serif;
+  font-size: 3rem;
+  color: #FFE81F;
+}
+
+
+img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+MyButton{
+    background-color: red;
+    color: white;
+    font-size:20px;
+}
+
+iframe{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@font-face {
+  font-family: 'StarJedi';
+  src: url('Fonts/star_jedi/starjedi/Starjedi.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

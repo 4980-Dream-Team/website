@@ -29,7 +29,7 @@ MyButton{
 body {
     margin: 0;
     min-height: 100vh;
-    background-image: url("Images/StarWarsSpaceBackgroundImage.jpg");
+    background-image: url("StarWarsSpaceBackgroundImage.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -112,7 +112,7 @@ img {
 @font-face {
     font-family: 'StarJedi';
 
-    src: url('Fonts/star_jedi/starjedi/Starjedi.ttf')
+    src: url('Starjedi.ttf')
          format('truetype');
 
     font-weight: normal;

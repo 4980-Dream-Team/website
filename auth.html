@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication</title>
+    <link rel="stylesheet" href="style2.css">
+
+    
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <h1>Please sign in to be verified </h1>
+    
+    <!-- This container will display the Google Sign-In Button -->
+    <div id="buttonDiv"></div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/F2sERCgDESE?si=8s_MhPSu7Q1ucSTP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+    <div id="userProfile" style="display:none; margin-top:20px;">
+        <h3>Authentication Successful!</h3>
+        <p><strong>Name:</strong> <span id="userName"></span></p>
+        <p><strong>Email:</strong> <span id="userEmail"></span></p>
+        <img id="userImage" src="" alt="Profile Picture" style="border-radius:50%; width:100px;">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/zGwszApFEcY?si=2ZYZg5yWfNpueeSj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+   <div id="accessDenied" style="display:none; margin-top:20px;">
+    <h3>Access Denied</h3>
+    <p>Your Google account is not authorized to view this video.</p>
+    </div>
+
+    <style>
+    body {
+        margin: 0;
+        min-height: 100vh;
+
+        background-image: url("Images/StarWarsSpaceBackgroundImage.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+</style>
+
+    <script>
+        const allowedEmails =[
+            "calebagtg@gmail.com",
+            "obiwanceg4981@gmail.com"
+        ];
+
+        // Simple JWT decoder helper to read basic user profile info on the client side
+        function decodeJwt(token) {
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+            return JSON.parse(jsonPayload);
+        }
+
+          // Runs after Google Sign-In
+    function handleCredentialResponse(response) {
+
+        const userObject = decodeJwt(response.credential);
+
+        console.log("Signed in user:", userObject);
+
+        // Get the email and convert it to lowercase
+        const userEmail = userObject.email.toLowerCase();
+
+        // Check if email is on the allowed list
+        if (allowedEmails.includes(userEmail)) {
+
+            // User IS authorized
+            document.getElementById("userName").innerText = userObject.name;
+            document.getElementById("userEmail").innerText = userObject.email;
+            document.getElementById("userImage").src = userObject.picture;
+
+            document.getElementById("userProfile").style.display = "block";
+            document.getElementById("buttonDiv").style.display = "none";
+
+        } else {
+
+            // User is NOT authorized
+            document.getElementById("buttonDiv").style.display = "none";
+
+            document.getElementById("accessDenied").style.display = "block";
+
+            console.log("Access denied for:", userObject.email);
+        }
+    }
+
+
+        // Initialize Google Sign-In on page load
+        window.onload = function () {
+            google.accounts.id.initialize({
+                client_id: "676603323921-6g76a2oms8tn2h74k92n7khl7e4e4kbo.apps.googleusercontent.com", // <-- Replace with your real Client ID
+                callback: handleCredentialResponse
+            });
+            
+            // Render the visible button into our placeholder div
+            google.accounts.id.renderButton(
+                document.getElementById("buttonDiv"),
+                { theme: "outline", size: "large" } 
+            );
+            
+            //  Displays the One Tap floating prompt prompt if logged into Google
+            google.accounts.id.prompt(); 
+        }
+    </script>
+</body>
+</html>

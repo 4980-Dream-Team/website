@@ -1,0 +1,120 @@
+
+
+h1 {
+  font-family: 'StarJedi', sans-serif;
+  font-size: 3rem;
+  color: #FFE81F;
+}
+
+
+img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+MyButton{
+    background-color: red;
+    color: white;
+    font-size:20px;
+}
+
+@font-face {
+  font-family: 'StarJedi';
+  src: url('Fonts/star_jedi/starjedi/Starjedi.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-image: url("Images/StarWarsSpaceBackgroundImage.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-family: 'StarJedi', sans-serif;
+    font-size: 3rem;
+    color: #FFE81F;
+    text-align: center;
+}
+
+.MyButton {
+    color:black;
+    font-size: 20px;
+    
+}
+
+.crawl-container {
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+
+    perspective: 400px;
+}
+
+.crawl {
+    position: relative;
+
+    width: 700px;
+
+    color: #FFE81F;
+
+    font-family: Arial, sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 1.5;
+    text-align: justify;
+
+    transform-origin: 50% 100%;
+
+    animation: crawl 45s linear infinite;
+}
+
+.crawl-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.crawl-title h2 {
+    font-size: 50px;
+}
+
+@keyframes crawl {
+
+    0% {
+        transform:
+            rotateX(20deg)
+            translateY(600px);
+    }
+
+    100% {
+        transform:
+            rotateX(25deg)
+            translateY(-2500px);
+    }
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@font-face {
+    font-family: 'StarJedi';
+
+    src: url('Fonts/star_jedi/starjedi/Starjedi.ttf')
+         format('truetype');
+
+    font-weight: normal;
+    font-style: normal;
+}
